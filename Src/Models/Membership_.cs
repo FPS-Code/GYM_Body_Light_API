@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GYM_Body_Light_API.Src.Models
 {
-    public class membership
+    public class Membership_
     {
         public int Id { get; set; }
         public string TypeMembership { get; set; } = String.Empty;
