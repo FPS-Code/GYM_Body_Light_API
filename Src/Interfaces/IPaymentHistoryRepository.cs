@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GYM_Body_Light_API.Src.Interfaces;
 
-namespace GYM_Body_Light_API.Src.Repositories
+namespace GYM_Body_Light_API.Src.Interfaces
 {
-    public class UserRepository 
+    public interface IPaymentHistoryRepository
     {
         
-
     }
 }
