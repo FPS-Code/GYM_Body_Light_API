@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using GYM_Body_Light_API.Src.Data;
-using GYM_Body_Light_API.Src.Models;
-using GYM_Body_Light_API.Src.Repositories;
-using GYM_Body_Light_API.Src.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,12 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlite("Data Source=catedra1.db");
 });
+
+var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
