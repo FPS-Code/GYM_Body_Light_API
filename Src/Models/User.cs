@@ -10,7 +10,7 @@ namespace GYM_Body_Light_API.Src.Models
         public string Password { get; set; } = String.Empty;
         public string Role { get; set; }
         public DateOnly BirthDate { get; set; }
-        public string district { get; set; } = String.Empty;
+        public string District { get; set; } = String.Empty;
         public DateOnly DateAdmission { get; set; }
         
     }

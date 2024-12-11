@@ -8,32 +8,29 @@ namespace GYM_Body_Light_API.Src.Mappers
 {
     public class UserMapper
     {
-        public static UserDto MapToDTO(User user)
+        public static UserDto ToDTO(User user)
         {
             return new UserDto
             {
-               
                 Name = user.Name,
+                LastName = user.LastName,
                 Email = user.Email,
-                Password = user.Password,
                 Role = user.Role,
-                BirthDate = user.BirthDate,
-                district = user.district,
+                District = user.District,
                 DateAdmission = user.DateAdmission
-
             };
         }
-        public static User MapToModel(UserDto userDto)
+
+        public static User ToEntity(UserDto userDTO)
         {
             return new User
             {
-                Name = userDto.Name,
-                Email = userDto.Email,
-                Password = userDto.Password,
-                Role = userDto.Role,
-                BirthDate = userDto.BirthDate,
-                district = userDto.district,
-                DateAdmission = userDto.DateAdmission
+                Name = userDTO.Name,
+                LastName = userDTO.LastName,
+                Email = userDTO.Email,
+                Role = userDTO.Role,
+                District = userDTO.District,
+                DateAdmission = userDTO.DateAdmission
             };
         }
     }
