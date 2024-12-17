@@ -6,7 +6,7 @@ namespace GYM_Body_Light_API.Src.Models
         public string Name { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
         
-        public string Email { get; set; } 
+        public string Email { get; set; } = String.Empty;
         public string Password { get; set; } = String.Empty;
         public string Role { get; set; }
         public DateOnly BirthDate { get; set; }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GYM_Body_Light_API.Src.Data;
 using GYM_Body_Light_API.Src.DTOs;
 using GYM_Body_Light_API.Src.Interfaces;
+using GYM_Body_Light_API.Src.Mappers;
 using GYM_Body_Light_API.Src.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -83,5 +84,61 @@ namespace GYM_Body_Light_API.Src.Services
 
             return newUser;
         }
+
+        public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
+        {
+            var users = await _context.Users.AsNoTracking().ToListAsync();
+
+            // Mapear usuarios a DTO usando el mapper
+            return users.Select(UserMapper.ToDTO).ToList();
+        }
+
+        public async Task<IEnumerable<UserDto>> SearchUsersByNameAsync(string name)
+        {
+            var users = await _context.Users
+                .Where(u => u.Name.Contains(name))
+                .AsNoTracking()
+                .ToListAsync();
+
+            return users.Select(UserMapper.ToDTO).ToList();
+        }
+        public async Task<bool> DeleteUserByEmailAsync(string email)
+        {
+            // Buscar al usuario por su correo
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                return false; // Usuario no encontrado
+            }
+
+            // Eliminar el usuario si existe
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<UserDto?> UpdateUserAsync(string email, UserDto updatedUserDto)
+        {
+            // Buscar el usuario existente por correo
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                return null; // Usuario no encontrado
+            }
+
+            // Actualizar los campos del usuario
+            user.Name = updatedUserDto.Name;
+            user.LastName = updatedUserDto.LastName;
+            user.District = updatedUserDto.District;
+            user.Role = updatedUserDto.Role;
+
+            // Guardar los cambios en la base de datos
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            // Devolver el usuario actualizado como DTO
+            return UserMapper.ToDTO(user);
+        }
+
     }
 }

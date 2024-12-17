@@ -35,9 +35,17 @@ namespace GYM_Body_Light_API.Src.Interfaces
         /// <param name="email">Correo electrónico del usuario.</param>
         /// <param name="password">Contraseña en texto plano.</param>
         /// <returns>El usuario si las credenciales son correctas, de lo contrario null.</returns>
-        Task<User?> ValidateCredentials(string email, string password);
+        
 
         Task<User> RegisterUser(RegisterDto registerDto);
+
+        Task<IEnumerable<UserDto>> GetAllUsersAsync();
+        Task<User?> ValidateCredentials(string email, string password);
+
+        Task<IEnumerable<UserDto>> SearchUsersByNameAsync(string name);
+        Task<bool> DeleteUserByEmailAsync(string email);
+
+        Task<UserDto?> UpdateUserAsync(string email, UserDto updatedUserDto);
     }
     
 }
