@@ -24,6 +24,8 @@ namespace GYM_Body_Light_API.Src.DTOs
 
         
         public string District { get; set; } = string.Empty;
+
+        public string Gender { get; set; } = string.Empty;
     }
     
 }

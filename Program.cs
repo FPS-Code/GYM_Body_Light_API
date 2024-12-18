@@ -8,6 +8,16 @@ using GYM_Body_Light_API.Src.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin() // Permitir cualquier origen
+                  .AllowAnyMethod() // Permitir cualquier método (GET, POST, etc.)
+                  .AllowAnyHeader(); // Permitir cualquier encabezado
+        });
+});
 // Leer configuración de JWT desde appsettings.json
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
@@ -81,7 +91,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthentication(); // Middleware para manejar autenticación
 app.UseAuthorization(); // Middleware para manejar autorización

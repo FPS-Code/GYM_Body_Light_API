@@ -12,5 +12,7 @@ namespace GYM_Body_Light_API.Src.DTOs
         public DateOnly DateAdmission { get; set; }
 
         public string District { get; set; } = String.Empty;
+
+        public string Gender { get; set; } = String.Empty;
     }
 }

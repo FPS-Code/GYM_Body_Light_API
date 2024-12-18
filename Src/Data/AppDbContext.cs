@@ -15,7 +15,7 @@ namespace GYM_Body_Light_API.Src.Data
         public DbSet<Class> Classes { get; set; }
         public DbSet<Category> Categories { get; set; }
         
-        
+  
         
        
 
